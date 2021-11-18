@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -43,14 +45,14 @@ public class LoginActivity extends AppCompatActivity {
                 //Login thingy here when the database stuff is done
                 if(validInput){
                     //For successful Login
-                    Log.d("Log in", "Successful Login");
+                    Log.d("Log in", "Successful Login (Path 1)");
                     Intent i = new Intent(LoginActivity.this, MainActivity.class);
                     loggedIn = true;
                     i.putExtra("loggedIn", loggedIn);
                     LoginActivity.this.startActivity(i);
                 }
                 else{
-                    Log.d("Log in", "Unsuccessful Login");
+                    Log.d("Log in", "Unsuccessful Login (Path 2)");
                     Toast.makeText(LoginActivity.this, "Authentication failed.",
                             Toast.LENGTH_SHORT).show();
                     TextView passwordError = findViewById(R.id.pError2);
@@ -60,6 +62,38 @@ public class LoginActivity extends AppCompatActivity {
                     passwordError.setLayoutParams(params);
                     loggedIn = false;
                 }
+            }
+        });
+
+        //Perform Login when user click enter on keyboard
+        passwordTxt.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                    // Perform action on key press
+                    global.hideKeyboard(LoginActivity.this);
+                    clearAllFocus();
+                    EmptyInputValidation(emailTxt, passwordTxt);
+                    if(validInput) {
+                        Log.d("Log in", "Successful Login (Path 3)");
+                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                        i.putExtra("loggedIn", true);
+                        LoginActivity.this.startActivity(i);                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        TextView toSignUpBtn = findViewById(R.id.toSignUp);
+        //Make specific text bold
+        String sourceString = "Don't have an account? <b>Sign Up</b>" ;
+        toSignUpBtn.setText(Html.fromHtml(sourceString));
+        //Add onclick listener to navigate to Sign Up page
+        toSignUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
             }
         });
     }
