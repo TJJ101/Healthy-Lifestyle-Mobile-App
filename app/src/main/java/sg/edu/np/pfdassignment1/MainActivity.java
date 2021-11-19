@@ -1,6 +1,8 @@
 package sg.edu.np.pfdassignment1;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -11,18 +13,34 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class MainActivity extends AppCompatActivity {
     boolean loggedIn = false;
     Fragment selectedFragment;
 
+    //Heroku Database
+    private static String port = "5432";
+    //private static String Classes = "org.postgresql.Driver";
+    private static String database = "d6ab7bo6rdggh5";
+    private static String username = "cccledibyicwz";
+    private static String password = "6fb892ad015d8b6e71dbd5d05c37669a573ceeffdf35c957aa55c0c375fdf4c";
+    private static String url = "postgres://cccleldibyicwz:6fb892ad015d8b6e71dbd5d05c37669a573ceeffdf35c957aa55c0c375fdf4ce@ec2-3-231-69-204.compute-1.amazonaws.com:5432/d6ab7bo6rdggh5";
+
+    private Connection connection = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

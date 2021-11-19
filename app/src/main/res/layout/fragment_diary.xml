@@ -10,7 +10,7 @@
         android:id="@+id/emptyDiaryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="308dp"
         android:text="Press + to add Diary Entry"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
         android:clickable="true"
-        android:src="@drawable/ic_baseline_add_24"
+        app:srcCompat="@drawable/ic_baseline_add_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -34,7 +34,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="15dp"
         android:clickable="true"
-        android:src="@drawable/ic_baseline_fastfood_24"
+        app:srcCompat="@drawable/ic_baseline_fastfood_24"
         android:visibility="invisible"
         android:tooltipText="Add Food Entry"
         app:layout_constraintBottom_toTopOf="@+id/diaryExpandAddBtn"
@@ -47,23 +47,10 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="15dp"
         android:clickable="true"
-        android:src="@drawable/ic_baseline_notes_24"
+        app:srcCompat="@drawable/ic_baseline_notes_24"
         android:visibility="invisible"
         android:tooltipText="Add Notes Entry"
         app:layout_constraintBottom_toTopOf="@+id/addFoodBtn"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addDiabeticRecordBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="15dp"
-        android:clickable="true"
-        android:src="@drawable/ic_baseline_medical_services_24"
-        android:visibility="invisible"
-        android:tooltipText="Add Diabetic Record Entry"
-        app:layout_constraintBottom_toTopOf="@+id/addNotesBtn"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

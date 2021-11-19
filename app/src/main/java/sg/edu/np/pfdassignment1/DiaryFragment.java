@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class DiaryFragment extends Fragment {
     boolean clicked = false;
-    FloatingActionButton expandBtn, addFoodBtn, addNotesBtn, addRecordBtn;
+    FloatingActionButton expandBtn, addFoodBtn, addNotesBtn;
     public Animation fromBottom (Context context) {return AnimationUtils.loadAnimation(getContext(), R.anim.from_bottom_anim);}
     public Animation rotateOpen (Context context) {return AnimationUtils.loadAnimation(getContext(), R.anim.rotate_open_anim);}
     public Animation toBottom (Context context) {return AnimationUtils.loadAnimation(getContext(), R.anim.to_bottom_anim);}
@@ -36,7 +36,6 @@ public class DiaryFragment extends Fragment {
         expandBtn = view.findViewById(R.id.diaryExpandAddBtn);
         addFoodBtn = view.findViewById(R.id.addFoodBtn);
         addNotesBtn = view.findViewById(R.id.addNotesBtn);
-        addRecordBtn = view.findViewById(R.id.addDiabeticRecordBtn);
 
         if(!diaryList.isEmpty()) {
             TextView emptyDiaryText = view.findViewById(R.id.emptyDiaryText);
@@ -53,6 +52,23 @@ public class DiaryFragment extends Fragment {
             public void onClick(View v) { onExpandClicked();}
         });
 
+        //For Adding Food Entry
+        addFoodBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AddFoodActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //For adding Notes Entry
+        addNotesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AddNotesActivity.class);
+                startActivity(intent);
+            }
+        });
 
         /*
         addBtn.setOnClickListener(new View.OnClickListener() {
@@ -82,25 +98,21 @@ public class DiaryFragment extends Fragment {
         if (!clicked){
             addFoodBtn.setVisibility(View.VISIBLE);
             addNotesBtn.setVisibility(View.VISIBLE);
-            addRecordBtn.setVisibility(View.VISIBLE);
         }
         else {
             addFoodBtn.setVisibility(View.INVISIBLE);
             addNotesBtn.setVisibility(View.INVISIBLE);
-            addRecordBtn.setVisibility(View.INVISIBLE);
         }
     }
     private void setAnimation(Boolean clicked){
         if(!clicked){
             addFoodBtn.startAnimation(fromBottom(getContext()));
             addNotesBtn.startAnimation(fromBottom(getContext()));
-            addRecordBtn.startAnimation(fromBottom(getContext()));
             expandBtn.startAnimation(rotateOpen(getContext()));
         }
         else{
             addFoodBtn.startAnimation(toBottom(getContext()));
             addNotesBtn.startAnimation(toBottom(getContext()));
-            addRecordBtn.startAnimation(toBottom(getContext()));
             expandBtn.startAnimation(rotateClose(getContext()));
         }
     }
@@ -109,12 +121,10 @@ public class DiaryFragment extends Fragment {
         if(clicked){
             addFoodBtn.setClickable(false);
             addNotesBtn.setClickable(false);
-            addRecordBtn.setClickable(false);
         }
         else{
             addFoodBtn.setClickable(true);
             addNotesBtn.setClickable(true);
-            addRecordBtn.setClickable(true);
         }
     }
 }

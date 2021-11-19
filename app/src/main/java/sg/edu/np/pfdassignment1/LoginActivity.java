@@ -14,6 +14,17 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class LoginActivity extends AppCompatActivity {
     boolean validInput = true;
     TextView emailTxt, passwordTxt;
@@ -42,26 +53,34 @@ public class LoginActivity extends AppCompatActivity {
                 global.hideKeyboard(LoginActivity.this);
                 clearAllFocus();
                 EmptyInputValidation(emailTxt, passwordTxt);
-                //Login thingy here when the database stuff is done
                 if(validInput){
                     //For successful Login
-                    Log.d("Log in", "Successful Login (Path 1)");
-                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                    loggedIn = true;
-                    i.putExtra("loggedIn", loggedIn);
-                    LoginActivity.this.startActivity(i);
+                    String url = ApiClient.BASE_URL + "user/" + String.valueOf(emailTxt.getText());
+                    UserService service = ApiClient.getClient().create(UserService.class);
+                    Call<User> createCall = service.getUser(String.valueOf(emailTxt.getText()));
+                    createCall.enqueue(new Callback<User>() {
+                        @Override
+                        public void onResponse(Call<User> call, Response<User> response) {
+                            User u = (User) response.body();
+                            if (u != null && u.id != 0) {
+                                byte[] encryptPassword1 = new byte[0];
+                                encryptPassword1 = digest(String.valueOf(passwordTxt.getText()));
+                                String encryptPassword = bytesToHex(encryptPassword1);
+                                Log.d("Test EncryptPass", String.valueOf(encryptPassword));
+                                if(u.password.equals(encryptPassword)) { successfulLogin(); }
+                                else { unsuccessfulLogin(); }
+                            }
+                            else { unsuccessfulLogin(); }
+                        }
+
+                        @Override
+                        public void onFailure(Call<User> call, Throwable t){
+                                t.printStackTrace();
+                                unsuccessfulLogin();
+                        }
+                    });
                 }
-                else{
-                    Log.d("Log in", "Unsuccessful Login (Path 2)");
-                    Toast.makeText(LoginActivity.this, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show();
-                    TextView passwordError = findViewById(R.id.pError2);
-                    ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) passwordError.getLayoutParams();
-                    passwordError.setText("Invalid email or password");
-                    params.height = 50;
-                    passwordError.setLayoutParams(params);
-                    loggedIn = false;
-                }
+                else{ unsuccessfulLogin(); }
             }
         });
 
@@ -75,10 +94,32 @@ public class LoginActivity extends AppCompatActivity {
                     clearAllFocus();
                     EmptyInputValidation(emailTxt, passwordTxt);
                     if(validInput) {
-                        Log.d("Log in", "Successful Login (Path 3)");
-                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                        i.putExtra("loggedIn", true);
-                        LoginActivity.this.startActivity(i);                    }
+                        String url = ApiClient.BASE_URL + "user/" + String.valueOf(emailTxt.getText());
+                        UserService service = ApiClient.getClient().create(UserService.class);
+                        Call<User> createCall = service.getUser(String.valueOf(emailTxt.getText()));
+                        createCall.enqueue(new Callback<User>() {
+                            @Override
+                            public void onResponse(Call<User> call, Response<User> response) {
+                                User u = (User) response.body();
+                                if (u != null && u.id != 0) {
+                                    Log.d("TEST DATABASE", u.password);
+                                    byte[] encryptPassword1 = new byte[0];
+                                    encryptPassword1 = digest(String.valueOf(passwordTxt.getText()));
+                                    String encryptPassword = bytesToHex(encryptPassword1);
+                                    Log.d("Test EncryptPass", String.valueOf(encryptPassword));
+                                    if(u.password.equals(encryptPassword)) { successfulLogin(); }
+                                    else { unsuccessfulLogin(); }
+                                }
+                                else { unsuccessfulLogin(); }
+                            }
+                            @Override
+                            public void onFailure(Call<User> call, Throwable t) {
+                                t.printStackTrace();
+                                unsuccessfulLogin();
+                            }
+                        });
+                    }
+                    else { unsuccessfulLogin(); }
                     return true;
                 }
                 return false;
@@ -98,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    //For Validation
     private void EmptyInputValidation(TextView emailTxt, TextView passwordTxt){
         if(emailTxt.getText().toString().equals("")){
             TextView emailError = findViewById(R.id.eError2);
@@ -114,13 +156,14 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    //Validation
     private void Validate(TextView email, TextView password){
-        emailTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 TextView emailError = findViewById(R.id.eError2);
                 if(!hasFocus){
-                    if(!emailTxt.getText().toString().equals("") && !Global.isValidEmail(emailTxt.getText()))
+                    if(!email.getText().toString().equals("") && !Global.isValidEmail(emailTxt.getText()))
                     {
                         emailError.setText("Please enter a valid email address");
                         validInput = false;
@@ -133,7 +176,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        passwordTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 TextView passwordError = findViewById(R.id.pError2);
@@ -150,5 +193,54 @@ public class LoginActivity extends AppCompatActivity {
     private void clearAllFocus(){
         emailTxt.clearFocus();
         passwordTxt.clearFocus();
+    }
+
+    private void successfulLogin() {
+        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+        loggedIn = true;
+        i.putExtra("loggedIn", loggedIn);
+        LoginActivity.this.startActivity(i);
+    }
+
+    private void unsuccessfulLogin() {
+        Toast.makeText(LoginActivity.this, "Authentication failed.",
+                Toast.LENGTH_SHORT).show();
+        TextView passwordError = findViewById(R.id.pError2);
+        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) passwordError.getLayoutParams();
+        passwordError.setText("Invalid email or password");
+        params.height = 50;
+        passwordError.setLayoutParams(params);
+        loggedIn = false;
+    }
+    /*
+    public byte[] digest(String message) throws NoSuchAlgorithmException {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        return digest.digest(message.getBytes(StandardCharsets.UTF_8));
+    }
+    */
+
+    //For Sha-256 Hashing
+    public byte[] digest(String input) {
+        MessageDigest md;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalArgumentException(e);
+        }
+        byte[] result = md.digest(input.getBytes());
+        return result;
+    }
+
+    //Changing bytes to hex
+    private static String bytesToHex(byte[] hash) {
+        StringBuilder hexString = new StringBuilder(2 * hash.length);
+        for (int i = 0; i < hash.length; i++) {
+            String hex = Integer.toHexString(0xff & hash[i]);
+            if(hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
+        return hexString.toString();
     }
 }
