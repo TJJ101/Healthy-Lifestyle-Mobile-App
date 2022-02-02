@@ -13,15 +13,20 @@ public class Food {
     public double getSugar() {return sugar;}
     public void setSugar(double sugar) {this.sugar = sugar;}
 
-    public double sodium;
-    public double getSodium() {return sodium;}
-    public void setSodium(double sodium) {this.sodium = sodium;}
+    public int sodium;
+    public int getSodium() {return sodium;}
+    public void setSodium(int sodium) {this.sodium = sodium;}
+
+    public double fat;
+    public double getFat() {return fat;}
+    public void setFat(double fat) {this.fat = fat;}
 
     public Food(){};
-    public Food(String foodName, int calories, double sugar, double sodium) {
+    public Food(String foodName, int calories, double sugar, int sodium, double fat) {
         this.foodName = foodName;
         this.calories = calories;
         this.sugar = sugar;
         this.sodium = sodium;
+        this.fat = fat;
     }
 }

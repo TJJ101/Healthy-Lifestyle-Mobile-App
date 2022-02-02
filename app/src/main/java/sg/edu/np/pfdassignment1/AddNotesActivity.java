@@ -25,7 +25,7 @@ import java.util.Locale;
 
 public class AddNotesActivity extends AppCompatActivity {
     Button cancelBtn, saveBtn;
-    EditText dateInput, timeInput;
+    EditText dateInput, timeInput, titleInput, noteInput;
     DatePickerDialog.OnDateSetListener datePickerListener;
     TimePickerDialog.OnTimeSetListener timePickerListener;
     int hour, minute;
@@ -34,6 +34,9 @@ public class AddNotesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_notes);
+
+        titleInput = findViewById(R.id.addNoteTitleInput);
+        noteInput = findViewById(R.id.addNotesInput);
 
         //Init Buttons
         cancelBtn = findViewById(R.id.addNotesCancelBtn);

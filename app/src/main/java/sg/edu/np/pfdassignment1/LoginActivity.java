@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                                 encryptPassword1 = digest(String.valueOf(passwordTxt.getText()));
                                 String encryptPassword = bytesToHex(encryptPassword1);
                                 Log.d("Test EncryptPass", String.valueOf(encryptPassword));
-                                if(u.password.equals(encryptPassword)) { successfulLogin(); }
+                                if(u.password.equals(encryptPassword)) { successfulLogin(u); }
                                 else { unsuccessfulLogin(); }
                             }
                             else { unsuccessfulLogin(); }
@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
                                     encryptPassword1 = digest(String.valueOf(passwordTxt.getText()));
                                     String encryptPassword = bytesToHex(encryptPassword1);
                                     Log.d("Test EncryptPass", String.valueOf(encryptPassword));
-                                    if(u.password.equals(encryptPassword)) { successfulLogin(); }
+                                    if(u.password.equals(encryptPassword)) { successfulLogin(u); }
                                     else { unsuccessfulLogin(); }
                                 }
                                 else { unsuccessfulLogin(); }
@@ -195,10 +195,13 @@ public class LoginActivity extends AppCompatActivity {
         passwordTxt.clearFocus();
     }
 
-    private void successfulLogin() {
+    private void successfulLogin(User u) {
         Intent i = new Intent(LoginActivity.this, MainActivity.class);
         loggedIn = true;
-        i.putExtra("loggedIn", loggedIn);
+        //Bundle bundle = new Bundle();
+        //bundle.putBoolean("Log in", loggedIn);
+        //bundle.putString("Email", u.email);
+        i.putExtra("Log in", loggedIn);
         LoginActivity.this.startActivity(i);
     }
 

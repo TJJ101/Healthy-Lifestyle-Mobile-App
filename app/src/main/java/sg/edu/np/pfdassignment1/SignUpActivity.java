@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class SignUpActivity extends AppCompatActivity {
     boolean validInput = true;
-    TextView usernameTxt, emailTxt, passwordTxt, cfmPasswordTxt;
+    TextView emailTxt, passwordTxt, cfmPasswordTxt;
     Global global = new Global();
 
     @Override
@@ -23,7 +23,6 @@ public class SignUpActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
 
-        usernameTxt = findViewById(R.id.newUsernameTxt);
         emailTxt = findViewById(R.id.newEmailTxt);
         passwordTxt = findViewById(R.id.newPasswordTxt);
         cfmPasswordTxt = findViewById(R.id.cfmPasswordTxt);

@@ -9,14 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class AccountFragment extends Fragment {
     Button logoutBtn;
+    TextView accountName;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -24,6 +25,10 @@ public class AccountFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_account, container, false);
+        String email = getArguments().getString("Email");
+
+        accountName = view.findViewById(R.id.accountName);
+        //accountName.setText(email);
 
         logoutBtn = view.findViewById(R.id.logoutBtn);
         logoutBtn.setOnClickListener(new View.OnClickListener() {

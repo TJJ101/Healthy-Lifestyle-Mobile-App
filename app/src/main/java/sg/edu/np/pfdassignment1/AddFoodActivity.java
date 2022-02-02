@@ -31,18 +31,25 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class AddFoodActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    EditText dateInput, timeInput;
+    EditText dateInput, timeInput, calorieTxt, sugarTxt, foodNameInput, sodiumInput, fatInput;
     DatePickerDialog.OnDateSetListener datePickerListener;
     TimePickerDialog.OnTimeSetListener timePickerListener;
     int hour, minute;
     Spinner spinner;
-    ArrayList<Food> foodList = new ArrayList<>();
+    static ArrayList<Food> foodList = new ArrayList<Food>();
     Button cancelBtn, saveBtn;
+    String selectedFood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_food);
+
+        sodiumInput = findViewById(R.id.sodiumInput);
+        fatInput = findViewById(R.id.fatInput);
+        foodNameInput = findViewById(R.id.foodNameInput);
+        calorieTxt = findViewById(R.id.calorieInput);
+        sugarTxt = findViewById(R.id.sugarInput);
 
         //Init Buttons
         cancelBtn = findViewById(R.id.addFoodCancelBtn);
@@ -95,11 +102,11 @@ public class AddFoodActivity extends AppCompatActivity implements AdapterView.On
         };
 
         //Populate Food list for the Spanner/Dropdown List
-        foodList.add(new Food("Hokkien Mee", 555, 1.6, 753));
-        foodList.add(new Food("Duck Rice", 673, 28, 545));
-        foodList.add(new Food("Chicken Rice", 402, 4.2, 1355));
-        foodList.add(new Food("Wonton Noodle", 270, 0, 620));
-        foodList.add(new Food("Laksa", 613, 17, 2456));
+        foodList.add(new Food("Hokkien Mee", 555, 1.6, 753, 18));
+        foodList.add(new Food("Duck Rice", 673, 28, 545, 20));
+        foodList.add(new Food("Chicken Rice", 402, 4.2, 1355, 14));
+        foodList.add(new Food("Wonton Noodle", 270, 0, 620, 2));
+        foodList.add(new Food("Laksa", 613, 17, 2456, 31));
 
         //Spinner
         spinner = findViewById(R.id.foodDropdownList);
@@ -154,11 +161,35 @@ public class AddFoodActivity extends AppCompatActivity implements AdapterView.On
         //Change Code here for spinner
         String text = parent.getItemAtPosition(position).toString();
         Log.d("Test Spinner", text);
-
+        if(text.equals("Custom"))
+        {
+            foodNameInput.setVisibility(View.VISIBLE);
+            calorieTxt.setText("");
+            sugarTxt.setText("");
+            sodiumInput.setText("");
+            fatInput.setText("");
+        }
+        else{
+            foodNameInput.setVisibility(View.GONE);
+            selectedFood = text;
+            int foodIndex = foodListIndex(foodList, selectedFood);
+            Log.d("Food Index", String.valueOf(foodIndex));
+            if (foodIndex != -1)
+            {
+                calorieTxt.setText(String.valueOf(foodList.get(foodIndex).getCalories()));
+                sugarTxt.setText(String.valueOf(foodList.get(foodIndex).getSugar()));
+                sodiumInput.setText(String.valueOf(foodList.get(foodIndex).getSodium()));
+                fatInput.setText(String.valueOf(foodList.get(foodIndex).getFat()));
+            }
+        }
     }
     //For Spinner
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+        calorieTxt.setText("");
+        sugarTxt.setText("");
+        sodiumInput.setText("");
+        fatInput.setText("");
     }
 
     //For Cancel Button dialog
@@ -185,5 +216,15 @@ public class AddFoodActivity extends AppCompatActivity implements AdapterView.On
                 }
         );
         return cancelBtnBuilder.create();
+    }
+
+    public int foodListIndex (ArrayList<Food> foodList, String foodName)
+    {
+        for(int i = 0; i < foodList.size(); i++)
+        {
+            if(foodList.get(i).getFoodName().equals(foodName))
+                return i;
+        }
+        return -1;
     }
 }

@@ -1,140 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddFoodActivity">
 
-    <EditText
-        android:id="@+id/dateInput"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
-        android:ems="10"
-        android:inputType="date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateInputText" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/dateInput"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:ems="10"
+            android:inputType="date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dateInputText" />
 
-    <TextView
-        android:id="@+id/dateInputText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="55dp"
-        android:text="Enter Date:"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/dateInputText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="55dp"
+            android:text="Enter Date:"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/timeInputText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="35dp"
-        android:text="Enter Time:"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateInput" />
+        <TextView
+            android:id="@+id/timeInputText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="35dp"
+            android:text="Enter Time:"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dateInput" />
 
-    <EditText
-        android:id="@+id/timeInput"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
-        android:ems="10"
-        android:inputType="time"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeInputText" />
+        <EditText
+            android:id="@+id/timeInput"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:ems="10"
+            android:inputType="time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timeInputText" />
 
-    <TextView
-        android:id="@+id/foodPresetText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="35dp"
-        android:text="Food Preset"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeInput" />
+        <TextView
+            android:id="@+id/foodPresetText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="35dp"
+            android:text="Food Preset"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timeInput" />
 
-    <Spinner
-        android:id="@+id/foodDropdownList"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodPresetText" />
+        <Spinner
+            android:id="@+id/foodDropdownList"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/foodPresetText" />
 
-    <TextView
-        android:id="@+id/calorieText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="96dp"
-        android:text="Calories:"
-        android:textSize="18sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodDropdownList" />
+        <TextView
+            android:id="@+id/calorieText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:text="Calories:"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/foodNameInput" />
 
-    <TextView
-        android:id="@+id/sugarText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="96dp"
-        android:text="Sugar:"
-        android:textSize="18sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintStart_toEndOf="@+id/calorieText"
-        app:layout_constraintTop_toBottomOf="@+id/foodDropdownList" />
+        <TextView
+            android:id="@+id/sugarText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="20dp"
+            android:text="Sugar:"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintStart_toEndOf="@+id/calorieText"
+            app:layout_constraintTop_toBottomOf="@+id/foodNameInput" />
 
-    <EditText
-        android:id="@+id/calorieInput"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="51dp"
-        android:ems="10"
-        android:inputType="number"
-        android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calorieText" />
+        <EditText
+            android:id="@+id/calorieInput"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:ems="10"
+            android:inputType="number"
+            android:textAlignment="viewStart"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calorieText" />
 
-    <EditText
-        android:id="@+id/editTextNumberDecimal"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        app:layout_constraintStart_toEndOf="@+id/calorieInput"
-        app:layout_constraintTop_toBottomOf="@+id/sugarText" />
+        <EditText
+            android:id="@+id/sugarInput"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="85dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:textAlignment="viewStart"
+            app:layout_constraintStart_toEndOf="@+id/calorieInput"
+            app:layout_constraintTop_toBottomOf="@+id/sugarText" />
 
-    <Button
-        android:id="@+id/addFoodCancelBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="67dp"
-        android:layout_marginBottom="83dp"
-        android:text="Cancel"
-        app:backgroundTint="#A5A5A5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/addFoodCancelBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="67dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="83dp"
+            android:text="Cancel"
+            app:backgroundTint="#A5A5A5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sodiumInput" />
 
-    <Button
-        android:id="@+id/addFoodSaveBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="82dp"
-        android:layout_marginBottom="83dp"
-        android:text="Save"
-        app:backgroundTint="#4CAF50"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/addFoodCancelBtn" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/addFoodSaveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="82dp"
+            android:layout_marginBottom="83dp"
+            android:text="Save"
+            app:backgroundTint="#4CAF50"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/addFoodCancelBtn" />
+
+        <TextView
+            android:id="@+id/sodiumText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:text="Sodium"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calorieInput" />
+
+        <EditText
+            android:id="@+id/sodiumInput"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:ems="10"
+            android:inputType="number"
+            android:textAlignment="viewStart"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sodiumText" />
+
+        <TextView
+            android:id="@+id/fatText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="18dp"
+            android:text="Fat"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintStart_toEndOf="@+id/sodiumText"
+            app:layout_constraintTop_toBottomOf="@+id/sugarInput" />
+
+        <EditText
+            android:id="@+id/fatInput"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="85dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            app:layout_constraintStart_toEndOf="@+id/sodiumInput"
+            app:layout_constraintTop_toBottomOf="@+id/fatText" />
+
+        <TextView
+            android:id="@+id/kcalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Kcal"
+            app:layout_constraintStart_toEndOf="@+id/calorieInput"
+            app:layout_constraintTop_toTopOf="@+id/calorieInput" />
+
+        <TextView
+            android:id="@+id/miligramText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="mg"
+            app:layout_constraintStart_toEndOf="@+id/sodiumInput"
+            app:layout_constraintTop_toTopOf="@+id/sodiumInput" />
+
+        <TextView
+            android:id="@+id/gramText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="g"
+            app:layout_constraintStart_toEndOf="@+id/sugarInput"
+            app:layout_constraintTop_toTopOf="@+id/sugarInput" />
+
+        <TextView
+            android:id="@+id/secondGramText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="g"
+            app:layout_constraintStart_toEndOf="@+id/fatInput"
+            app:layout_constraintTop_toBottomOf="@+id/fatText" />
+
+        <EditText
+            android:id="@+id/foodNameInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="67dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Food Name"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/foodDropdownList" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

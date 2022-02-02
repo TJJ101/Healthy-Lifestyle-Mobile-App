@@ -54,16 +54,17 @@
         android:id="@+id/addNotesInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="4dp"
+        android:background="@null"
         android:ems="10"
+        android:gravity="top|left"
         android:hint="Type here..."
+        android:inputType="textMultiLine"
         android:minLines="3"
         android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:scrollbars="vertical"
         android:scrollbarStyle="insideInset"
-        android:inputType="textMultiLine"
-        android:background="@null"
-        android:gravity="top|left"
+        android:scrollbars="vertical"
         android:textAppearance="?android:attr/textAppearanceMedium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addNotesNotesTxt" />
@@ -72,8 +73,8 @@
         android:id="@+id/addNotesNotesTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="57dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="148dp"
         android:text="Enter Notes:"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -101,6 +102,28 @@
         app:backgroundTint="#A5A5A5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/addNotesTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="164dp"
+        android:layout_marginTop="30dp"
+        android:text="Title"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addNotesDateInput" />
+
+    <EditText
+        android:id="@+id/addNoteTitleInput"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="135dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addNotesTitleText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
