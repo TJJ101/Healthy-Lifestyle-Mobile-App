@@ -22,9 +22,9 @@
             tools:context=".SignUpActivity">
 
             <TextView
-                android:id="@+id/box"
+                android:id="@+id/box2"
                 android:layout_width="0dp"
-                android:layout_height="450dp"
+                android:layout_height="480dp"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="25dp"
                 android:background="@drawable/shadow"
@@ -34,23 +34,23 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/newFNameTxt"
+                android:id="@+id/newNRICTxt"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="45dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="45dp"
                 android:ems="10"
-                android:hint="First Name"
+                android:hint="NRIC"
                 android:inputType="textPersonName"
                 android:textColor="#2C2C2C"
-                app:layout_constraintEnd_toEndOf="@+id/box"
+                app:layout_constraintEnd_toEndOf="@+id/box2"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/createAccTxt" />
+                app:layout_constraintStart_toStartOf="@+id/box2"
+                app:layout_constraintTop_toBottomOf="@+id/createAccTxt2" />
 
             <TextView
-                android:id="@+id/signUpTxt"
+                android:id="@+id/signUpTxt2"
                 android:layout_width="0dp"
                 android:layout_height="47dp"
                 android:layout_marginStart="45dp"
@@ -60,60 +60,44 @@
                 android:textColor="#2C2C2C"
                 android:textSize="30dp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/box"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toTopOf="@+id/box" />
+                app:layout_constraintEnd_toEndOf="@+id/box2"
+                app:layout_constraintStart_toStartOf="@+id/box2"
+                app:layout_constraintTop_toTopOf="@+id/box2" />
 
             <EditText
-                android:id="@+id/newMobileNumTxt"
+                android:id="@+id/newAddrTxt"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="45dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="45dp"
                 android:ems="10"
-                android:hint="Mobile Number"
+                android:hint="Address"
                 android:inputType="textPersonName"
                 android:textColor="#2C2C2C"
-                app:layout_constraintEnd_toEndOf="@+id/box"
+                app:layout_constraintEnd_toEndOf="@+id/box2"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/lNameError" />
-
-            <EditText
-                android:id="@+id/newLNameTxt"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="45dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="45dp"
-                android:ems="10"
-                android:hint="Last Name"
-                android:inputType="textPersonName"
-                android:textColor="#2C2C2C"
-                app:layout_constraintEnd_toEndOf="@+id/box"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/fNameError" />
+                app:layout_constraintStart_toStartOf="@+id/box2"
+                app:layout_constraintTop_toBottomOf="@+id/nricError" />
 
             <Button
-                android:id="@+id/signUpBtn"
+                android:id="@+id/signUpBtn2"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="45dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="45dp"
                 android:text="Sign Up"
                 android:textColor="#FFFFFF"
                 app:backgroundTint="#2C2C2C"
                 app:cornerRadius="0dp"
-                app:layout_constraintEnd_toEndOf="@+id/box"
+                app:layout_constraintEnd_toEndOf="@+id/box2"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/mobileNumError" />
+                app:layout_constraintStart_toStartOf="@+id/box2"
+                app:layout_constraintTop_toBottomOf="@+id/disabilityError" />
 
             <TextView
-                android:id="@+id/userIdTxt"
+                android:id="@+id/userIdTxt2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="45dp"
@@ -121,13 +105,13 @@
                 android:layout_marginEnd="45dp"
                 android:text="Already have an account? Login"
                 android:textAlignment="textStart"
-                app:layout_constraintEnd_toEndOf="@+id/box"
+                app:layout_constraintEnd_toEndOf="@+id/box2"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/signUpBtn" />
+                app:layout_constraintStart_toStartOf="@+id/box2"
+                app:layout_constraintTop_toBottomOf="@+id/signUpBtn2" />
 
             <TextView
-                android:id="@+id/mobileNumError"
+                android:id="@+id/addrError"
                 android:layout_width="0dp"
                 android:layout_height="17dp"
                 android:layout_marginStart="49dp"
@@ -135,13 +119,13 @@
                 android:layout_marginEnd="49dp"
                 android:textColor="#E46F6F"
                 android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="@+id/box"
+                app:layout_constraintEnd_toEndOf="@+id/box2"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/newMobileNumTxt" />
+                app:layout_constraintStart_toStartOf="@+id/box2"
+                app:layout_constraintTop_toBottomOf="@+id/newAddrTxt" />
 
             <TextView
-                android:id="@+id/lNameError"
+                android:id="@+id/disabilityError"
                 android:layout_width="0dp"
                 android:layout_height="17dp"
                 android:layout_marginStart="49dp"
@@ -149,13 +133,13 @@
                 android:layout_marginEnd="49dp"
                 android:textColor="#E46F6F"
                 android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="@+id/box"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/newLNameTxt" />
+                app:layout_constraintEnd_toEndOf="@+id/box2"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/box2"
+                app:layout_constraintTop_toBottomOf="@id/disabilityRadioGrp" />
 
             <TextView
-                android:id="@+id/fNameError"
+                android:id="@+id/nricError"
                 android:layout_width="0dp"
                 android:layout_height="17dp"
                 android:layout_marginStart="49dp"
@@ -163,22 +147,66 @@
                 android:layout_marginEnd="49dp"
                 android:textColor="#E46F6F"
                 android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="@+id/box"
+                app:layout_constraintEnd_toEndOf="@+id/box2"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/newFNameTxt" />
+                app:layout_constraintStart_toStartOf="@+id/box2"
+                app:layout_constraintTop_toBottomOf="@+id/newNRICTxt" />
 
             <TextView
-                android:id="@+id/createAccTxt"
+                android:id="@+id/createAccTxt2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="45dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="45dp"
                 android:text="Create your new account"
-                app:layout_constraintEnd_toEndOf="@+id/box"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/signUpTxt" />
+                app:layout_constraintEnd_toEndOf="@+id/box2"
+                app:layout_constraintStart_toStartOf="@+id/box2"
+                app:layout_constraintTop_toBottomOf="@+id/signUpTxt2" />
+
+            <TextView
+                android:id="@+id/disabilityTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Disability"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/box2"
+                app:layout_constraintHorizontal_bias="0.155"
+                app:layout_constraintStart_toStartOf="@+id/box2"
+                app:layout_constraintTop_toBottomOf="@+id/addrError" />
+
+            <RadioGroup
+                android:id="@+id/disabilityRadioGrp"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@+id/box2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/box2"
+                app:layout_constraintTop_toBottomOf="@+id/disabilityTxt">
+
+                <RadioButton
+                    android:id="@+id/disabilityTrueBtn"
+                    android:layout_width="93dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginTop="2dp"
+                    android:text="True"
+                    app:layout_constraintStart_toStartOf="@+id/box2"
+                    app:layout_constraintTop_toBottomOf="@+id/disabilityTxt" />
+
+                <RadioButton
+                    android:id="@+id/disabilityFalseBtn"
+                    android:layout_width="98dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="2dp"
+                    android:text="False"
+                    app:layout_constraintStart_toEndOf="@+id/disabilityTrueBtn"
+                    app:layout_constraintTop_toBottomOf="@+id/disabilityTxt" />
+            </RadioGroup>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

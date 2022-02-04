@@ -22,7 +22,7 @@
             tools:context=".SignUpActivity">
 
             <TextView
-                android:id="@+id/box"
+                android:id="@+id/box3"
                 android:layout_width="0dp"
                 android:layout_height="450dp"
                 android:layout_marginStart="25dp"
@@ -33,24 +33,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/newFNameTxt"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="45dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="45dp"
-                android:ems="10"
-                android:hint="First Name"
-                android:inputType="textPersonName"
-                android:textColor="#2C2C2C"
-                app:layout_constraintEnd_toEndOf="@+id/box"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/createAccTxt" />
-
             <TextView
-                android:id="@+id/signUpTxt"
+                android:id="@+id/signUpTxt3"
                 android:layout_width="0dp"
                 android:layout_height="47dp"
                 android:layout_marginStart="45dp"
@@ -60,44 +44,75 @@
                 android:textColor="#2C2C2C"
                 android:textSize="30dp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/box"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toTopOf="@+id/box" />
+                app:layout_constraintEnd_toEndOf="@+id/box3"
+                app:layout_constraintStart_toStartOf="@+id/box3"
+                app:layout_constraintTop_toTopOf="@+id/box3" />
 
             <EditText
-                android:id="@+id/newMobileNumTxt"
+                android:id="@+id/newEmailTxt"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="45dp"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="textPersonName"
+                android:textColor="#2C2C2C"
+                app:layout_constraintEnd_toEndOf="@+id/box3"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/box3"
+                app:layout_constraintTop_toBottomOf="@+id/createAccTxt3" />
+
+            <EditText
+                android:id="@+id/newPasswordTxt"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="45dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="45dp"
                 android:ems="10"
-                android:hint="Mobile Number"
-                android:inputType="textPersonName"
+                android:hint="Password"
+                android:inputType="textPersonName|textPassword"
                 android:textColor="#2C2C2C"
-                app:layout_constraintEnd_toEndOf="@+id/box"
+                app:layout_constraintEnd_toEndOf="@+id/box3"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/lNameError" />
+                app:layout_constraintStart_toStartOf="@+id/box3"
+                app:layout_constraintTop_toBottomOf="@+id/eError" />
+
+            <TextView
+                android:id="@+id/pError"
+                android:layout_width="0dp"
+                android:layout_height="17dp"
+                android:layout_marginStart="49dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="49dp"
+                android:maxLines="2"
+                android:textColor="#E46F6F"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="@+id/box3"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/box3"
+                app:layout_constraintTop_toBottomOf="@+id/newPasswordTxt" />
 
             <EditText
-                android:id="@+id/newLNameTxt"
+                android:id="@+id/cfmPasswordTxt"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="45dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="45dp"
                 android:ems="10"
-                android:hint="Last Name"
-                android:inputType="textPersonName"
+                android:hint="Retype-password"
+                android:inputType="textPassword"
                 android:textColor="#2C2C2C"
-                app:layout_constraintEnd_toEndOf="@+id/box"
+                app:layout_constraintEnd_toEndOf="@+id/box3"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/fNameError" />
+                app:layout_constraintStart_toStartOf="@+id/box3"
+                app:layout_constraintTop_toBottomOf="@+id/pError" />
 
             <Button
-                android:id="@+id/signUpBtn"
+                android:id="@+id/signUpBtn3"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="45dp"
@@ -107,13 +122,13 @@
                 android:textColor="#FFFFFF"
                 app:backgroundTint="#2C2C2C"
                 app:cornerRadius="0dp"
-                app:layout_constraintEnd_toEndOf="@+id/box"
+                app:layout_constraintEnd_toEndOf="@+id/box3"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/mobileNumError" />
+                app:layout_constraintStart_toStartOf="@+id/box3"
+                app:layout_constraintTop_toBottomOf="@+id/cError" />
 
             <TextView
-                android:id="@+id/userIdTxt"
+                android:id="@+id/userIdTxt3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="45dp"
@@ -121,13 +136,13 @@
                 android:layout_marginEnd="45dp"
                 android:text="Already have an account? Login"
                 android:textAlignment="textStart"
-                app:layout_constraintEnd_toEndOf="@+id/box"
+                app:layout_constraintEnd_toEndOf="@+id/box3"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/signUpBtn" />
+                app:layout_constraintStart_toStartOf="@+id/box3"
+                app:layout_constraintTop_toBottomOf="@+id/signUpBtn3" />
 
             <TextView
-                android:id="@+id/mobileNumError"
+                android:id="@+id/eError"
                 android:layout_width="0dp"
                 android:layout_height="17dp"
                 android:layout_marginStart="49dp"
@@ -135,50 +150,35 @@
                 android:layout_marginEnd="49dp"
                 android:textColor="#E46F6F"
                 android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="@+id/box"
+                app:layout_constraintEnd_toEndOf="@+id/box3"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/newMobileNumTxt" />
+                app:layout_constraintStart_toStartOf="@+id/box3"
+                app:layout_constraintTop_toBottomOf="@+id/newEmailTxt" />
 
             <TextView
-                android:id="@+id/lNameError"
-                android:layout_width="0dp"
-                android:layout_height="17dp"
-                android:layout_marginStart="49dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="49dp"
-                android:textColor="#E46F6F"
-                android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="@+id/box"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/newLNameTxt" />
-
-            <TextView
-                android:id="@+id/fNameError"
-                android:layout_width="0dp"
-                android:layout_height="17dp"
-                android:layout_marginStart="49dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="49dp"
-                android:textColor="#E46F6F"
-                android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="@+id/box"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/newFNameTxt" />
-
-            <TextView
-                android:id="@+id/createAccTxt"
+                android:id="@+id/createAccTxt3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="45dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="45dp"
                 android:text="Create your new account"
-                app:layout_constraintEnd_toEndOf="@+id/box"
-                app:layout_constraintStart_toStartOf="@+id/box"
-                app:layout_constraintTop_toBottomOf="@+id/signUpTxt" />
+                app:layout_constraintEnd_toEndOf="@+id/box3"
+                app:layout_constraintStart_toStartOf="@+id/box3"
+                app:layout_constraintTop_toBottomOf="@+id/signUpTxt3" />
+
+            <TextView
+                android:id="@+id/cError"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="49dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="49dp"
+                android:textColor="#E46F6F"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="@+id/box3"
+                app:layout_constraintStart_toStartOf="@+id/box3"
+                app:layout_constraintTop_toBottomOf="@+id/cfmPasswordTxt" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

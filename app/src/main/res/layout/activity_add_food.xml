@@ -106,7 +106,6 @@
             android:ems="10"
             android:inputType="number"
             android:textAlignment="viewStart"
-            android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/calorieText" />
 
@@ -165,7 +164,6 @@
             android:ems="10"
             android:inputType="number"
             android:textAlignment="viewStart"
-            android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sodiumText" />
 

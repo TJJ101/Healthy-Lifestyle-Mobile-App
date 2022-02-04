@@ -44,7 +44,7 @@ public class NotesDiaryFragment extends Fragment {
             emptyDiaryText.setVisibility(View.VISIBLE);
         }
 
-        //For expanding the floating button
+        //For expanding the
         addNotesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

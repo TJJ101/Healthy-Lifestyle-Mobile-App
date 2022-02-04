@@ -19,9 +19,6 @@ public class Password implements Serializable {
         this.password = password;
     }
 
-    private String notes;
-    public String getNotes() {return notes;}
-    public void setNotes(String notes) {this.notes = notes;}
 
     public Password() {}
     public Password(String n, String u, String p) {

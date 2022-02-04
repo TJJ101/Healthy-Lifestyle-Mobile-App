@@ -10,5 +10,7 @@ public class FoodDiary {
     private Food foodItem;
     public Food getFoodItem() {return foodItem;}
     public void setFoodItem(Food f) {this.foodItem = f;}
+
+    public String getFoodItemName() {return foodItem.getFoodName(); }
 }
 

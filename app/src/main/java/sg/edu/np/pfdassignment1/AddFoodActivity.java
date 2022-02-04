@@ -26,15 +26,18 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class AddFoodActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    EditText dateInput, timeInput, calorieTxt, sugarTxt, foodNameInput, sodiumInput, fatInput;
+    EditText dateInput, timeInput, calorieInput, sugarInput, foodNameInput, sodiumInput, fatInput;
     DatePickerDialog.OnDateSetListener datePickerListener;
     TimePickerDialog.OnTimeSetListener timePickerListener;
-    int hour, minute;
+    int hour, minute, year, month, day;
     Spinner spinner;
     static ArrayList<Food> foodList = new ArrayList<Food>();
     Button cancelBtn, saveBtn;
@@ -48,8 +51,8 @@ public class AddFoodActivity extends AppCompatActivity implements AdapterView.On
         sodiumInput = findViewById(R.id.sodiumInput);
         fatInput = findViewById(R.id.fatInput);
         foodNameInput = findViewById(R.id.foodNameInput);
-        calorieTxt = findViewById(R.id.calorieInput);
-        sugarTxt = findViewById(R.id.sugarInput);
+        calorieInput = findViewById(R.id.calorieInput);
+        sugarInput = findViewById(R.id.sugarInput);
 
         //Init Buttons
         cancelBtn = findViewById(R.id.addFoodCancelBtn);
@@ -116,6 +119,33 @@ public class AddFoodActivity extends AppCompatActivity implements AdapterView.On
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
+        //For Save Button
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FoodDiary foodDiary = new FoodDiary();
+                Date date1 = new Date(year, month, day, hour, minute);
+                foodDiary.setDateTime(date1);
+                Log.d("food name 0", spinner.getSelectedItem().toString());
+                if (spinner.getSelectedItem().toString().equals("Custom")) {
+                    String foodName1 = String.valueOf(foodNameInput.getText());
+                    int calorie1 = Integer.parseInt(String.valueOf(calorieInput.getText()));
+                    double sugar1 = Double.parseDouble(String.valueOf(sugarInput.getText()));
+                    int sodium1 = Integer.parseInt(String.valueOf(sodiumInput.getText()));
+                    double fat1 = Double.parseDouble(String.valueOf(fatInput.getText()));
+                    foodDiary.setFoodItem(new Food(foodName1, calorie1, sugar1, sodium1, fat1));
+                }
+                else{
+                    int foodListIndex = foodListIndex(foodList, spinner.getSelectedItem().toString());
+                    if(foodListIndex != -1) {
+                        foodDiary.setFoodItem(foodList.get(foodListIndex));
+                    }
+                }
+                FoodDiaryFragment.foodDiaryList.add(foodDiary);
+                FoodDiaryFragment.recyclerView.getAdapter().notifyDataSetChanged();
+                finish();
+            }
+        });
 
         //For Cancel Button
         AlertDialog cancelBtnAlert = createCancelBtnAlert();
@@ -164,8 +194,8 @@ public class AddFoodActivity extends AppCompatActivity implements AdapterView.On
         if(text.equals("Custom"))
         {
             foodNameInput.setVisibility(View.VISIBLE);
-            calorieTxt.setText("");
-            sugarTxt.setText("");
+            calorieInput.setText("");
+            sugarInput.setText("");
             sodiumInput.setText("");
             fatInput.setText("");
         }
@@ -176,8 +206,8 @@ public class AddFoodActivity extends AppCompatActivity implements AdapterView.On
             Log.d("Food Index", String.valueOf(foodIndex));
             if (foodIndex != -1)
             {
-                calorieTxt.setText(String.valueOf(foodList.get(foodIndex).getCalories()));
-                sugarTxt.setText(String.valueOf(foodList.get(foodIndex).getSugar()));
+                calorieInput.setText(String.valueOf(foodList.get(foodIndex).getCalories()));
+                sugarInput.setText(String.valueOf(foodList.get(foodIndex).getSugar()));
                 sodiumInput.setText(String.valueOf(foodList.get(foodIndex).getSodium()));
                 fatInput.setText(String.valueOf(foodList.get(foodIndex).getFat()));
             }
@@ -186,8 +216,8 @@ public class AddFoodActivity extends AppCompatActivity implements AdapterView.On
     //For Spinner
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        calorieTxt.setText("");
-        sugarTxt.setText("");
+        calorieInput.setText("");
+        sugarInput.setText("");
         sodiumInput.setText("");
         fatInput.setText("");
     }
