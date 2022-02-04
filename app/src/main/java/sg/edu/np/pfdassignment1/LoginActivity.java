@@ -198,10 +198,10 @@ public class LoginActivity extends AppCompatActivity {
     private void successfulLogin(User u) {
         Intent i = new Intent(LoginActivity.this, MainActivity.class);
         loggedIn = true;
-        //Bundle bundle = new Bundle();
-        //bundle.putBoolean("Log in", loggedIn);
-        //bundle.putString("Email", u.email);
-        i.putExtra("Log in", loggedIn);
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("Log in", loggedIn);
+        bundle.putString("Email", u.email);
+        i.putExtras(bundle);
         LoginActivity.this.startActivity(i);
     }
 

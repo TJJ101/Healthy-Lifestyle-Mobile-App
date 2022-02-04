@@ -13,6 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -26,7 +29,9 @@ public class NotesDiaryFragment extends Fragment {
     public Animation toBottom (Context context) {return AnimationUtils.loadAnimation(getContext(), R.anim.to_bottom_anim);}
     public Animation rotateClose (Context context) {return AnimationUtils.loadAnimation(getContext(), R.anim.rotate_close_anim);}
 
-    ArrayList<NotesDiary> notesDiaryList = new ArrayList<>();
+    static RecyclerView recyclerView;
+    NotesDiaryListAdapter adapter;
+    static ArrayList<NotesDiary> notesList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -35,7 +40,7 @@ public class NotesDiaryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_notes_diary, container, false);
         addNotesBtn = view.findViewById(R.id.addNotesBtn);
 
-        if(!notesDiaryList.isEmpty()) {
+        if(!notesList.isEmpty()) {
             TextView emptyDiaryText = view.findViewById(R.id.emptyDiaryText);
             emptyDiaryText.setVisibility(View.GONE);
         }
@@ -63,6 +68,14 @@ public class NotesDiaryFragment extends Fragment {
         });
 
          */
+        //For RecyclerView
+        recyclerView = view.findViewById(R.id.notesDiaryList);
+        adapter = new NotesDiaryListAdapter(notesList, getActivity());
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
+
         return view;
     }
 

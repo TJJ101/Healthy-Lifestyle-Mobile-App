@@ -25,9 +25,7 @@ import java.util.Locale;
 
 public class AddNotesActivity extends AppCompatActivity {
     Button cancelBtn, saveBtn;
-    EditText dateInput, timeInput, titleInput, noteInput;
-    DatePickerDialog.OnDateSetListener datePickerListener;
-    TimePickerDialog.OnTimeSetListener timePickerListener;
+    EditText noteInput;
     int hour, minute;
 
     @Override
@@ -35,58 +33,23 @@ public class AddNotesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_notes);
 
-        titleInput = findViewById(R.id.addNoteTitleInput);
         noteInput = findViewById(R.id.addNotesInput);
 
         //Init Buttons
         cancelBtn = findViewById(R.id.addNotesCancelBtn);
         saveBtn = findViewById(R.id.addNotesSaveBtn);
 
-        //For Date Picker Dialog
-        dateInput = findViewById(R.id.addNotesDateInput);
-        dateInput.setInputType(0);
-        dateInput.setOnTouchListener(new View.OnTouchListener() {
+        saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                    Calendar cal = Calendar.getInstance();
-                    int year = cal.get(Calendar.YEAR);
-                    int month = cal.get(Calendar.MONTH);
-                    int day = cal.get(Calendar.DAY_OF_MONTH);
-                    createDatePickerDialog(AddNotesActivity.this, year, month, day);
-                }
-                return true;
-            }
-        });
-        datePickerListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int day) {
-                month = month + 1;
-                String date = day + "/" + month + "/" + year;
-                dateInput.setText(date);
-            }
-        };
+            public void onClick(View v) {
+                NotesDiary notes = new NotesDiary();
+                notes.setNotes(String.valueOf(noteInput.getText()));
 
-        //For Time Picker
-        timeInput = findViewById(R.id.addNotesTimeInput);
-        timeInput.setInputType(0);
-        timeInput.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                    createTimePickerDialog(AddNotesActivity.this, timePickerListener, hour, minute, false);
-                }
-                return true;
+                NotesDiaryFragment.notesList.add(notes);
+                NotesDiaryFragment.recyclerView.getAdapter().notifyDataSetChanged();
+                finish();
             }
         });
-        timePickerListener = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
-                hour = selectedHour;
-                minute = selectedMinute;
-                timeInput.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
-            }
-        };
 
         //For Cancel Btn
         AlertDialog cancelBtnAlert = createCancelBtnAlert();
@@ -139,18 +102,5 @@ public class AddNotesActivity extends AppCompatActivity {
                 }
         );
         return cancelBtnBuilder.create();
-    }
-
-    //Creating the Date Picker Dialog
-    public void createDatePickerDialog(Context context, int year, int month, int day) {
-        DatePickerDialog dialog = new DatePickerDialog(context, android.R.style.Theme_Holo_Light_Dialog_MinWidth, datePickerListener, year, month, day);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.show();
-    }
-
-    //Creating the time picker dialog
-    public void createTimePickerDialog(Context context, TimePickerDialog.OnTimeSetListener timeSetListener, int hour, int minute, Boolean twentyFourHour) {
-        TimePickerDialog dialog = new TimePickerDialog(context, timeSetListener, hour, minute, twentyFourHour);
-        dialog.show();
     }
 }

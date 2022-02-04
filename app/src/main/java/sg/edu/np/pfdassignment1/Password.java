@@ -19,7 +19,6 @@ public class Password implements Serializable {
         this.password = password;
     }
 
-
     public Password() {}
     public Password(String n, String u, String p) {
         this.nameOfPassword = n;

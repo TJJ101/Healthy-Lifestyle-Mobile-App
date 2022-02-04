@@ -62,16 +62,15 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_account:
                 Log.d("Fragment", "Account Fragment");
                 selectedFragment = new AccountFragment();
-                bundle.putString("Email", email);
-                selectedFragment.setArguments(bundle);
+                Bundle emailData = new Bundle();
+                emailData.putString("Email", email);
+                selectedFragment.setArguments(emailData);
                 break;
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment_container, selectedFragment).commit();
     }
     protected void onStart() {
         super.onStart();
-        //Bundle bundle = getIntent().getExtras();
-        //loggedIn = bundle.getBoolean("Log in", false);
         loggedIn = getIntent().getBooleanExtra("Log in", false);
         Log.d("login", "Log in change");
         if(loggedIn == false){

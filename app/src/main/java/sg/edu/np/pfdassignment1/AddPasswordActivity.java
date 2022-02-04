@@ -7,12 +7,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddPasswordActivity extends AppCompatActivity {
     EditText nameOfPassword, username, password;
@@ -44,6 +50,22 @@ public class AddPasswordActivity extends AppCompatActivity {
                 //setResult(1000, i);
                 PasswordFragment.passwordList.add(password1);
                 PasswordFragment.recyclerView.getAdapter().notifyDataSetChanged();
+
+                UserService service = ApiClient.getClient().create(UserService.class);
+                Call<Password> createPass = service.createPassword(3, password1);
+                createPass.enqueue(new Callback<Password>() {
+                    @Override
+                    public void onResponse(Call<Password> call, Response<Password> response) {
+                        Log.d("SignUp Test Resp", String.valueOf(response.body()));
+                        Log.d("SignUp Test Call", String.valueOf(call.request()));
+                        Log.d("SignUP Test CreateCall", String.valueOf(createPass.request()));
+                    }
+
+                    @Override
+                    public void onFailure(Call<Password> call, Throwable t) {
+
+                    }
+                });
                 finish();
             }
         });

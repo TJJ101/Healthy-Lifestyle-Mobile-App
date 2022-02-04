@@ -27,4 +27,8 @@ public interface UserService {
     @POST("register/{email}")
     Call<ResponseBody> create(@Path("email") String email , @Body String userDetails);
 
+    @Headers({"Content-Type: application/json"})
+    @POST("{userId}")
+    Call<Password> createPassword(@Path("userId") int userId , @Body Password passwordDetails);
+
 }

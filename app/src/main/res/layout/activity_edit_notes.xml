@@ -6,12 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".AddNotesActivity">
 
+    <ImageButton
+        android:id="@+id/editNotesdeleteBtn"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="170dp"
+        android:layout_marginBottom="30dp"
+        android:background="#DD2626"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_baseline_delete_24" />
+
     <EditText
-        android:id="@+id/addNotesInput"
+        android:id="@+id/editNotes"
         android:layout_width="307dp"
         android:layout_height="333dp"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="9dp"
         android:background="@null"
         android:ems="10"
         android:gravity="top|left"
@@ -23,10 +34,10 @@
         android:scrollbars="vertical"
         android:textAppearance="?android:attr/textAppearanceMedium"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addNotesTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/editNotesTxt" />
 
     <TextView
-        android:id="@+id/addNotesTxt"
+        android:id="@+id/editNotesTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
@@ -38,22 +49,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/addNotesSaveBtn"
+        android:id="@+id/editNotesSaveBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginBottom="64dp"
-        android:text="Save"
+        android:layout_marginBottom="80dp"
+        android:text="Update"
         app:backgroundTint="#4CAF50"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/addNotesCancelBtn" />
+        app:layout_constraintStart_toEndOf="@+id/editNotesCancelBtn" />
 
     <Button
-        android:id="@+id/addNotesCancelBtn"
+        android:id="@+id/editNotesCancelBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="83dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="80dp"
         android:text="Cancel"
         app:backgroundTint="#A5A5A5"
         app:layout_constraintBottom_toBottomOf="parent"

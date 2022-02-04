@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,10 +26,13 @@ public class AccountFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_account, container, false);
-        String email = getArguments().getString("Email");
+        Bundle bundle = this.getArguments();
+        String email = bundle.getString("Email");
 
         accountName = view.findViewById(R.id.accountName);
-        //accountName.setText(email);
+        if(email != null){
+            accountName.setText(email);
+        }
 
         logoutBtn = view.findViewById(R.id.logoutBtn);
         logoutBtn.setOnClickListener(new View.OnClickListener() {
