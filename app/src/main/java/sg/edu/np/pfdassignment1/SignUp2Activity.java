@@ -103,4 +103,22 @@ public class SignUp2Activity extends AppCompatActivity {
             validInput = false;
         }
     }
+
+    private void Validation(TextView nric) {
+        nric.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                TextView nricError = findViewById(R.id.nricError);
+                int length = String.valueOf(nric).length();
+                if(length != 9) {
+                    nricError.setText("Invalid NRIC");
+                    validInput = false;
+                }
+                else {
+                    nricError.setText("");
+                    validInput = true;
+                }
+            }
+        });
+    }
 }

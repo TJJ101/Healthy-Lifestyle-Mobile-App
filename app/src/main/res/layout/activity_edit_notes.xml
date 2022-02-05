@@ -10,10 +10,10 @@
         android:id="@+id/editNotesdeleteBtn"
         android:layout_width="70dp"
         android:layout_height="30dp"
-        android:layout_marginStart="170dp"
         android:layout_marginBottom="30dp"
         android:background="#DD2626"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_baseline_delete_24" />
 
@@ -52,22 +52,23 @@
         android:id="@+id/editNotesSaveBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="76dp"
         android:text="Update"
         app:backgroundTint="#4CAF50"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editNotesCancelBtn" />
 
     <Button
         android:id="@+id/editNotesCancelBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="83dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="76dp"
         android:text="Cancel"
         app:backgroundTint="#A5A5A5"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editNotesSaveBtn"
         app:layout_constraintStart_toStartOf="parent" />
 
 

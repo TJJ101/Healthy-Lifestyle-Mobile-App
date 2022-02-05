@@ -1,8 +1,9 @@
 package sg.edu.np.pfdassignment1;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class FoodDiary {
+public class FoodDiary implements Serializable {
     private Date dateTime;
     public Date getDateTime() {return dateTime;}
     public void setDateTime(Date dt) {this.dateTime = dt;}

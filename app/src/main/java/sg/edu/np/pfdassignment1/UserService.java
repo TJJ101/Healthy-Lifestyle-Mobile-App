@@ -23,6 +23,9 @@ public interface UserService {
     @GET("user/{email}")
     Call<User> getUser(@Path("email") String email);
 
+    @GET("{id}")
+    Call<NotesDiary> getNotes(@Path("id") int id);
+
     @Headers({"Content-Type: application/json"})
     @POST("register/{email}")
     Call<ResponseBody> create(@Path("email") String email , @Body String userDetails);

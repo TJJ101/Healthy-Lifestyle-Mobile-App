@@ -41,7 +41,7 @@ public class FoodDiaryFragment extends Fragment {
         });
 
         TextView emptyText = view.findViewById(R.id.emptyFoodDiaryListText);
-        if(!foodDiaryList.isEmpty()) {
+        if(foodDiaryList.size() > 0) {
             emptyText.setVisibility(View.GONE);
         }
         else {

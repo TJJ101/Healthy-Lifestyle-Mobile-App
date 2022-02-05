@@ -1,44 +1,51 @@
 package sg.edu.np.pfdassignment1;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
-public class EditNotesActivity extends AppCompatActivity {
+public class EditFoodActivity extends AppCompatActivity {
     int position;
-    NotesDiary notes = new NotesDiary();
-    EditText editNotes;
+    FoodDiary food;
+    TextView editCalories, editSugar, editSodium, editFat, editDate, editTime;
+    DatePickerDialog.OnDateSetListener datePickerListener;
+    TimePickerDialog.OnTimeSetListener timePickerListener;
+    int hour, minute, year, month, day;
     Button cancelBtn, updateBtn;
     ImageButton deleteBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_notes);
+        setContentView(R.layout.activity_edit_food);
 
-        // Get Data from NotesDiaryListAdapter
-        Bundle data = getIntent().getExtras();
-        position = data.getInt("Position");
-        notes.setNotes(data.getString("Notes Details"));
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        food = (FoodDiary) bundle.getSerializable("Food Details");
+        position = bundle.getInt("Position");
 
-        //init
-        editNotes = findViewById(R.id.editNotes);
-        cancelBtn = findViewById(R.id.editNotesCancelBtn);
-        updateBtn = findViewById(R.id.editNotesSaveBtn);
-        deleteBtn = findViewById(R.id.editNotesdeleteBtn);
-
-        editNotes.setText(notes.getNotes());
+        //Init fields
+        //editCalories = findViewById(R.id.ed);
+        //editSugar = findViewById(R.id.);
+        //editSodium = findViewById(R.id.);
+        //editFat = findViewById(R.id.);
+        //editDate = findViewById(R.id.);
+        //editTime = findViewById(R.id.);
 
         AlertDialog cancelBtnAlert = createCancelBtnAlert();
-        AlertDialog deleteBtnAlert = createDeleteBtnAlert();
+        //AlertDialog deleteBtnAlert = createDeleteBtnAlert();
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +54,7 @@ public class EditNotesActivity extends AppCompatActivity {
             }
         });
 
+        /*
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,16 +62,13 @@ public class EditNotesActivity extends AppCompatActivity {
             }
         });
 
-        updateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                notes.setNotes(String.valueOf(editNotes.getText()));
-                NotesDiaryFragment.notesList.set(position, notes);
-                NotesDiaryFragment.recyclerView.getAdapter().notifyDataSetChanged();
-                finish();
-            }
-        });
+         */
+
+        //For ActionBar
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
+
     public AlertDialog createCancelBtnAlert() {
         AlertDialog.Builder cancelBtnBuilder = new AlertDialog.Builder(this);
         cancelBtnBuilder.setMessage("Are you sure? Any unsaved changes will be discarded.");
@@ -89,6 +94,7 @@ public class EditNotesActivity extends AppCompatActivity {
         return cancelBtnBuilder.create();
     }
 
+    /*
     public AlertDialog createDeleteBtnAlert() {
         AlertDialog.Builder deleteBtnBuilder = new AlertDialog.Builder(this);
         deleteBtnBuilder.setMessage("Are you sure? This action cannot be undone.");
@@ -98,8 +104,8 @@ public class EditNotesActivity extends AppCompatActivity {
                 "Yes",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        NotesDiaryFragment.notesList.remove(position);
-                        NotesDiaryFragment.recyclerView.getAdapter().notifyDataSetChanged();
+                        FoodDiaryFragment.foodDiaryList.remove(position);
+                        FoodDiaryFragment.recyclerView.getAdapter().notifyDataSetChanged();
                         finish();
                     }
                 }
@@ -114,42 +120,19 @@ public class EditNotesActivity extends AppCompatActivity {
         );
         return deleteBtnBuilder.create();
     }
-    public AlertDialog createBackBtnAlert() {
-        AlertDialog.Builder cancelBtnBuilder = new AlertDialog.Builder(this);
-        cancelBtnBuilder.setMessage("Are you sure? Any unsaved changes will be discarded.");
-        cancelBtnBuilder.setCancelable(true);
 
-        cancelBtnBuilder.setPositiveButton(
-                "Yes",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                        onBackPressed();
-                    }
-                }
-        );
-        cancelBtnBuilder.setNegativeButton(
-                "No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                }
-        );
-        return cancelBtnBuilder.create();
-    }
+     */
+
     //For ActionBar (the one at the top of the app)
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
+        switch (item.getItemId())
+        {
             case android.R.id.home:
-                AlertDialog backBtnAlert = createBackBtnAlert();
-                backBtnAlert.show();
-                //onBackPressed();
+                onBackPressed();
                 //finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

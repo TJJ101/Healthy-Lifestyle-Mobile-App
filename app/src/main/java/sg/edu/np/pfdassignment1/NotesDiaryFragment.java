@@ -3,6 +3,7 @@ package sg.edu.np.pfdassignment1;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
+import java.util.Random;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class NotesDiaryFragment extends Fragment {
     boolean clicked = false;
@@ -49,7 +57,33 @@ public class NotesDiaryFragment extends Fragment {
             emptyDiaryText.setVisibility(View.VISIBLE);
         }
 
-        //For expanding the
+        int random = new Random().nextInt(2);
+
+        // Populate with data from Database
+        UserService services = ApiClient.getClient().create(UserService.class);
+        Call<NotesDiary> notesCall = services.getNotes(random);
+        notesCall.enqueue(new Callback<NotesDiary>() {
+            @Override
+            public void onResponse(Call<NotesDiary> call, Response<NotesDiary> response) {
+                if(response.isSuccessful()) {
+                    NotesDiary data = (NotesDiary) response.body();
+                    if(!data.equals(null)) {
+                        if(!data.getNotes().equals(null)) {
+                            if(!notesExist(notesList, data)) {
+                                notesList.add(data);
+                                adapter.notifyDataSetChanged();
+                            }
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<NotesDiary> call, Throwable t) {
+
+            }
+        });
+
         addNotesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,5 +115,15 @@ public class NotesDiaryFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    public boolean notesExist(ArrayList<NotesDiary> nList, NotesDiary data) {
+        for(int i=0; i<nList.size(); i++){
+            NotesDiary temp = nList.get(i);
+            if(temp.getUserId() == temp.getUserId()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

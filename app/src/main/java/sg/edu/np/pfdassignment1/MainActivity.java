@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     boolean loggedIn = false;
     Fragment selectedFragment;
     String email;
+    static User user = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
             bottomNav.setOnNavigationItemSelectedListener(navListener);
         //to open password fragment when creating MainActivity
         getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment_container, new PasswordFragment()).commit();
-
     }
+
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override

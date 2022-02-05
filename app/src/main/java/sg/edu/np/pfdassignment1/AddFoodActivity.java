@@ -26,12 +26,15 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class AddFoodActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     EditText dateInput, timeInput, calorieInput, sugarInput, foodNameInput, sodiumInput, fatInput;
@@ -66,9 +69,9 @@ public class AddFoodActivity extends AppCompatActivity implements AdapterView.On
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
                     Calendar cal = Calendar.getInstance();
-                    int year = cal.get(Calendar.YEAR);
-                    int month = cal.get(Calendar.MONTH);
-                    int day = cal.get(Calendar.DAY_OF_MONTH);
+                    year = cal.get(Calendar.YEAR);
+                    month = cal.get(Calendar.MONTH);
+                    day = cal.get(Calendar.DAY_OF_MONTH);
                     createDatePickerDialog(AddFoodActivity.this, year, month, day);
                 }
                 return true;
@@ -124,8 +127,25 @@ public class AddFoodActivity extends AppCompatActivity implements AdapterView.On
             @Override
             public void onClick(View v) {
                 FoodDiary foodDiary = new FoodDiary();
-                Date date1 = new Date(year, month, day, hour, minute);
-                foodDiary.setDateTime(date1);
+                TimeZone timeZone = TimeZone.getTimeZone("");
+                Calendar calendar = Calendar.getInstance(timeZone);
+                String dateStr = day + "/" + month + "/" + year;
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    Date temp = dateFormat.parse(dateStr);
+                    calendar.setTime(temp);
+                    calendar.set(Calendar.HOUR_OF_DAY, hour);
+                    calendar.set(Calendar.MINUTE, minute);
+                    Date date = calendar.getTime();
+                    Log.d("AddFood Date Test", String.valueOf(date));
+                    Log.d("AddFood Test Year", String.valueOf(year));
+                    Log.d("AddFood Test month", String.valueOf(month));
+                    Log.d("AddFood Test day", String.valueOf(day));
+                    foodDiary.setDateTime(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    Log.d("AddFood Date Test2 ", "FAILED");
+                }
                 Log.d("food name 0", spinner.getSelectedItem().toString());
                 if (spinner.getSelectedItem().toString().equals("Custom")) {
                     String foodName1 = String.valueOf(foodNameInput.getText());
@@ -178,7 +198,9 @@ public class AddFoodActivity extends AppCompatActivity implements AdapterView.On
         switch (item.getItemId())
         {
             case android.R.id.home:
-                onBackPressed();
+                AlertDialog backBtnAlert = createBackBtnAlert();
+                backBtnAlert.show();
+                //onBackPressed();
                 //finish();
                 return true;
         }
@@ -256,5 +278,30 @@ public class AddFoodActivity extends AppCompatActivity implements AdapterView.On
                 return i;
         }
         return -1;
+    }
+
+    public AlertDialog createBackBtnAlert() {
+        AlertDialog.Builder cancelBtnBuilder = new AlertDialog.Builder(this);
+        cancelBtnBuilder.setMessage("Are you sure? Any unsaved changes will be discarded.");
+        cancelBtnBuilder.setCancelable(true);
+
+        cancelBtnBuilder.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        onBackPressed();
+                    }
+                }
+        );
+        cancelBtnBuilder.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                }
+        );
+        return cancelBtnBuilder.create();
     }
 }

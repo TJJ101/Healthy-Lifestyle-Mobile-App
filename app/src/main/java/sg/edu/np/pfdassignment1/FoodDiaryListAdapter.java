@@ -1,6 +1,8 @@
 package sg.edu.np.pfdassignment1;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,9 +36,26 @@ public class FoodDiaryListAdapter extends RecyclerView.Adapter<FoodDiaryListAdap
         FoodDiary fData = fList.get(position);
         Log.d("food name", fData.getFoodItemName());
         Log.d("food name 2", String.valueOf((CharSequence) fData.getFoodItemName()));
-        holder.foodNameTxt.setText((CharSequence) fData.getFoodItemName());
+        holder.foodNameTxt.setText(fData.getFoodItemName());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        Log.d("Add Food Test Time", String.valueOf(fData.getDateTime()));
+        Log.d("Add Food Test Time 2", sdf.format(fData.getDateTime()));
         holder.foodTimeTxt.setText(sdf.format(fData.getDateTime()));
+
+        // for when clicking on food item
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(holder.itemView.getContext(), EditFoodActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("Position", position);
+                bundle.putSerializable("Food Details", fList.get(position));
+                in.putExtras(bundle);
+                holder.itemView.getContext().startActivity(in);
+                //Slide from Right to Left Transition
+                activity.overridePendingTransition(R.transition.slide_in_right, R.transition.slide_out_left);
+            }
+        });
     }
 
     public FoodDiaryListAdapter(ArrayList<FoodDiary> fList, Activity activity) {

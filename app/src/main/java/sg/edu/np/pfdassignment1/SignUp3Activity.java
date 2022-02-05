@@ -43,6 +43,8 @@ public class SignUp3Activity extends AppCompatActivity {
         passwordTxt = findViewById(R.id.newPasswordTxt);
         cfmPasswordTxt = findViewById(R.id.cfmPasswordTxt);
 
+        Validation(emailTxt, passwordTxt, cfmPasswordTxt);
+
         signUpBtn = findViewById(R.id.signUpBtn3);
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +125,7 @@ public class SignUp3Activity extends AppCompatActivity {
 
     //  Validation for all fields after EditText lose focus (User change to different text box)
     private void Validation(TextView emailTxt, TextView passwordTxt, TextView cfmPasswordTxt){
-        /*emailTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        emailTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 TextView emailError = findViewById(R.id.eError);
@@ -139,7 +141,7 @@ public class SignUp3Activity extends AppCompatActivity {
                     validInput = true;
                 }
             }
-        }); */
+        });
 
         passwordTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -236,7 +238,6 @@ public class SignUp3Activity extends AppCompatActivity {
         });
     }
 
-
     private void successfulLogin() {
         Intent i = new Intent(SignUp3Activity.this, MainActivity.class);
         boolean loggedIn = true;
@@ -251,4 +252,6 @@ public class SignUp3Activity extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
         boolean loggedIn = false;
     }
+
+
 }

@@ -63,6 +63,8 @@ public class AddNotesActivity extends AppCompatActivity {
         //For ActionBar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+
     }
 
     //For ActionBar (the one at the top of the app)
@@ -71,7 +73,9 @@ public class AddNotesActivity extends AppCompatActivity {
         switch (item.getItemId())
         {
             case android.R.id.home:
-                onBackPressed();
+                AlertDialog backBtnAlert = createBackBtnAlert();
+                backBtnAlert.show();
+                //onBackPressed();
                 //finish();
                 return true;
         }
@@ -90,6 +94,31 @@ public class AddNotesActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                         finish();
+                    }
+                }
+        );
+        cancelBtnBuilder.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                }
+        );
+        return cancelBtnBuilder.create();
+    }
+
+    public AlertDialog createBackBtnAlert() {
+        AlertDialog.Builder cancelBtnBuilder = new AlertDialog.Builder(this);
+        cancelBtnBuilder.setMessage("Are you sure? Any unsaved changes will be discarded.");
+        cancelBtnBuilder.setCancelable(true);
+
+        cancelBtnBuilder.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        onBackPressed();
                     }
                 }
         );

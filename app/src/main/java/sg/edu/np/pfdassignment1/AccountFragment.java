@@ -27,11 +27,15 @@ public class AccountFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_account, container, false);
         Bundle bundle = this.getArguments();
-        String email = bundle.getString("Email");
+        //String email = bundle.getString("Email");
 
         accountName = view.findViewById(R.id.accountName);
-        if(email != null){
-            accountName.setText(email);
+        //if(email != null){
+        //    accountName.setText(email);
+        //}
+
+        if(MainActivity.user.getEmail() != null) {
+            accountName.setText(MainActivity.user.getEmail());
         }
 
         logoutBtn = view.findViewById(R.id.logoutBtn);

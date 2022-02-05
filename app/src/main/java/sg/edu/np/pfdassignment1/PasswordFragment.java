@@ -72,4 +72,13 @@ public class PasswordFragment extends Fragment {
         passwordList.add((Password) data.getSerializableExtra("Password"));
     }
      */
+
+    static public boolean passwordExist(ArrayList<Password> pList, Password data) {
+        for(int i = 0; i < pList.size(); i++) {
+            if(pList.get(i).equals(data)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

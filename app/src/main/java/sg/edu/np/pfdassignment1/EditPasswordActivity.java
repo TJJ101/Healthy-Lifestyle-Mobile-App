@@ -186,6 +186,30 @@ public class EditPasswordActivity extends AppCompatActivity {
         );
         return deleteBtnBuilder.create();
     }
+    public AlertDialog createBackBtnAlert() {
+        AlertDialog.Builder cancelBtnBuilder = new AlertDialog.Builder(this);
+        cancelBtnBuilder.setMessage("Are you sure? Any unsaved changes will be discarded.");
+        cancelBtnBuilder.setCancelable(true);
+
+        cancelBtnBuilder.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        onBackPressed();
+                    }
+                }
+        );
+        cancelBtnBuilder.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                }
+        );
+        return cancelBtnBuilder.create();
+    }
 
     public void copyToClipboard(String label, String copyData) {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
@@ -196,14 +220,14 @@ public class EditPasswordActivity extends AppCompatActivity {
     //For ActionBar (the one at the top of the app)
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case android.R.id.home:
-                onBackPressed();
+                AlertDialog backBtnAlert = createBackBtnAlert();
+                backBtnAlert.show();
+                //onBackPressed();
                 //finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

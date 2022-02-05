@@ -202,6 +202,9 @@ public class LoginActivity extends AppCompatActivity {
         bundle.putBoolean("Log in", loggedIn);
         bundle.putString("Email", u.email);
         i.putExtras(bundle);
+        MainActivity.user.setEmail(u.email);
+        MainActivity.user.setId(u.id);
+        MainActivity.user.setPassword(String.valueOf(passwordTxt.getText()));
         LoginActivity.this.startActivity(i);
     }
 

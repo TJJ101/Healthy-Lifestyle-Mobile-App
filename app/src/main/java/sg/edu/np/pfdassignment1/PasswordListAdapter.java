@@ -55,6 +55,20 @@ public class PasswordListAdapter extends RecyclerView.Adapter<PasswordListAdapte
                 activity.overridePendingTransition(R.transition.slide_in_right, R.transition.slide_out_left);
             }
         });
+        holder.passwordType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(holder.itemView.getContext(), EditPasswordActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("Position", position);
+                bundle.putSerializable("Password Details", pList.get(position));
+                in.putExtras(bundle);
+                holder.itemView.getContext().startActivity(in);
+                //Slide from Right to Left Transition
+                activity.overridePendingTransition(R.transition.slide_in_right, R.transition.slide_out_left);
+            }
+        });
+
         if(holder.moreOptions.equals(null))
         {
             Log.d("Password Adapter", "NULL WTF");

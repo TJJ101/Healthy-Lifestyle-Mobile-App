@@ -36,7 +36,7 @@ public class NotesDiaryListAdapter extends RecyclerView.Adapter<NotesDiaryListAd
         NotesDiary data = nList.get(position);
         String [] temp = data.getNotes().split("\\s+");
         String notes = "";
-        if (temp.length > 3) {
+        if (temp.length > 6) {
             for(int i = 0;  i<5 ; i++) {
 
                 notes = notes + " " + temp[i];
@@ -48,6 +48,20 @@ public class NotesDiaryListAdapter extends RecyclerView.Adapter<NotesDiaryListAd
         holder.notesTxt.setText(notes);
 
         holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(holder.itemView.getContext(), EditNotesActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("Position", position);
+                bundle.putString("Notes Details", nList.get(position).getNotes());
+                in.putExtras(bundle);
+                holder.itemView.getContext().startActivity(in);
+                //Slide from Right to Left Transition
+                activity.overridePendingTransition(R.transition.slide_in_right, R.transition.slide_out_left);
+            }
+        });
+
+        holder.notesTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(holder.itemView.getContext(), EditNotesActivity.class);

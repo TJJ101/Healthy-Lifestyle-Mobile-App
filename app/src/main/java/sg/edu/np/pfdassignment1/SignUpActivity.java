@@ -35,6 +35,9 @@ public class SignUpActivity extends AppCompatActivity {
         mobileNum = findViewById(R.id.newMobileNumTxt);
 
         signUpBtn = findViewById(R.id.signUpBtn);
+
+        Validation(mobileNum);
+
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,7 +51,6 @@ public class SignUpActivity extends AppCompatActivity {
                     data.putString("mobileNum", String.valueOf(mobileNum.getText()));
                     i.putExtras(data);
                     startActivity(i);
-                    Log.d("TEst", "\"Diabetes\"");
                 }
             }
         });
@@ -86,7 +88,7 @@ public class SignUpActivity extends AppCompatActivity {
         toLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SignUpActivity.this, SignUp3Activity.class));
+                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
             }
         });
     }
@@ -113,5 +115,23 @@ public class SignUpActivity extends AppCompatActivity {
             mobileNumError.setText("Please enter a Mobile Number");
             validInput = false;
         }
+    }
+
+    private void Validation(TextView mobileNum) {
+        mobileNum.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                TextView mobileNumError = findViewById(R.id.mobileNumError);
+                int length = String.valueOf(mobileNum).length();
+                if(length != 8) {
+                    mobileNumError.setText("Invalid Mobile Number");
+                    validInput = false;
+                }
+                else {
+                    mobileNumError.setText("");
+                    validInput = true;
+                }
+            }
+        });
     }
 }
